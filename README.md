@@ -7,6 +7,12 @@ This repository contains the code for the SudoCode airplane website, built using
     python3 -OO manage.py migrate
     python3 -OO manage.py migrate --run-syncdb
 
+After this, run
+
+    python3 -OO manage.py airports
+
+to fill the database with the latest airports.
+
 Then, run:
 
     python3 -OO manage.py runserver
