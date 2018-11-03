@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SudoCode Airplanes</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <div class="auto-widget">
+      <input type="hidden" id="from" name="from" value="">
+      <input type="hidden" id="to" name="to" value="">
+      <p>From: <input type="text" id="from_airport"/></p>
+      <p>To: <input type="text" id="to_airport"/></p>
+    </div>
+    <script>
+$(function() {
+    $("#from_airport").autocomplete({
+        source: "airportAjax",
+        select: function( event, ui ) {
+            event.preventDefault();
+            $("#from").val(ui.item.id);
+        }
+    });
+    $("#to_airport").autocomplete({
+        source: "airportAjax",
+        select: function( event, ui ) {
+            event.preventDefault();
+            $("#to").val(ui.item.id);
+        }
+    });
+});
+</script>
+  </body>
+</html>
