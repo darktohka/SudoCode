@@ -14,30 +14,32 @@
     <div class="auto-widget">
       <input type="hidden" id="from" name="from" value="">
       <input type="hidden" id="to" name="to" value="">
-      <p>From: <input type="text" id="from_airport"/></p>
-      <p>To: <input type="text" id="to_airport"/></p>
-      <p>Date: <input type="text" id="date" name="date" data-toggle="datepicker"/></p>
+      <input type="hidden" id="start" name="start" value="">
+      <input type="hidden" id="end" name="end" value="">
+      <p>From: <input type="text" id="from_airport" size="40"/></p>
+      <p>To: <input type="text" id="to_airport" size="40"/></p>
+      <p>Date: <input type="text" id="date" size="40"/></p>
     </div>
     <script>
 $(function() {
     $("#from_airport").autocomplete({
         source: "airportAjax",
         select: function(event, ui) {
-            event.preventDefault();
             $("#from").val(ui.item.id);
         }
     });
     $("#to_airport").autocomplete({
         source: "airportAjax",
         select: function(event, ui) {
-            event.preventDefault();
             $("#to").val(ui.item.id);
         }
     });
-    $('[data-toggle="datepicker"]').datepicker({
-        autoHide: true,
-        zIndex: 2048,
-        startDate: new Date()
+    $('#date').dateRangePicker({
+        showShortcuts: false,
+        format: 'YYYY-MM-DD'
+    }).bind('datepicker-change', function(evt, obj) {
+        $("#start").val(Math.floor(obj.date1.getTime() / 1000));
+        $("#end").val(Math.floor(obj.date2.getTime() / 1000));
     });
 });
 </script>
