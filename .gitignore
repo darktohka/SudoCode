@@ -4,3 +4,4 @@ __pycache__
 *.bak
 *.swp
 *.save
+.idea
