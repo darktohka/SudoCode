@@ -2,3 +2,5 @@ Django
 django-cors-headers
 django-ckeditor
 gevent
+requests
+BeautifulSoup4
