@@ -1,0 +1,3 @@
+* SudoCode
+
+SudoCode likes airplanes.
