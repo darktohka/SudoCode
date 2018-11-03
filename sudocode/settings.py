@@ -31,7 +31,7 @@ SECRET_KEY = 'mqb=6_!$=we9(e93j71lhnneqp_b2sj^@wv$gzb77^djcggn(_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '159.69.217.27', 'sudocode.loonatic.pro']
 
 EMAIL_HOST = environ.get('EMAIL_HOST', '')
 EMAIL_PORT = environ.get('EMAIL_PORT', '')
