@@ -21,7 +21,7 @@ def search(request):
         return HttpResponseRedirect('/')
 
     flights = utils.search_flights(from_airport, to_airport, from_date, to_date)
-    return render(request, 'index.html', {'flights': flights})
+    return render(request, 'index.html', {'showWarning': True, 'flights': flights})
 
 def airport_ajax(request):
     if 'term' not in request.GET:

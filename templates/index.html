@@ -62,6 +62,9 @@
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
           <br><br>
+          {% if showWarning and not flights %}
+          <p>No flights available.</p>
+          {% endif %}
           {% for flight in flights %}
           <a href="{{ flight.link }}">{{ flight.name }} - {{ flight.time }} - {{ flight.money }}</a><br><br>
           {% endfor %}
