@@ -24,7 +24,7 @@
     }
     </script>
   </head>
-  <body id="{% if flights %}pic2{% else %}pic3{% endif %}">
+  <body id="{% if flights %}pic2{% else %}pic1{% endif %}">
     <div class="topnav" id="navigation">
       <a href="/" class="active">SudoCode</a>
       <div class="dropdown dropdown-right">
@@ -45,27 +45,29 @@
             <p>Where will your next journey bring you?</p>
           </div>
           <form id="search" method="post" action="/search">
-          {% csrf_token %}
-          <input type="hidden" id="from" name="from" value="">
-          <input type="hidden" id="to" name="to" value="">
-          <input type="hidden" id="start" name="start" value="">
-          <input type="hidden" id="end" name="end" value="">
-          <div class="form-group">
-            <p>From: <input type="text" id="from_airport" class="form-control"/></p>
-          </div>
-          <div class="form-group">
-            <p>To: <input type="text" id="to_airport" class="form-control"/></p>
-          </div>
-          <div class="form-group">
-            <p>Date: <input type="text" id="date" class="form-control"/></p>
-          </div>
-          <button type="submit" class="btn btn-primary">Search</button>
-        </form>      
+            {% csrf_token %}
+            <input type="hidden" id="from" name="from" value="">
+            <input type="hidden" id="to" name="to" value="">
+            <input type="hidden" id="start" name="start" value="">
+            <input type="hidden" id="end" name="end" value="">
+            <div class="form-group">
+              <p>From: <input type="text" id="from_airport" class="form-control"/></p>
+            </div>
+            <div class="form-group">
+              <p>To: <input type="text" id="to_airport" class="form-control"/></p>
+            </div>
+            <div class="form-group">
+              <p>Date: <input type="text" id="date" class="form-control"/></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+          <br><br>
+          {% for flight in flights %}
+          <a href="{{ flight.link }}">{{ flight.name }} - {{ flight.time }} - {{ flight.money }}</a><br><br>
+          {% endfor %}
       </div>
     </div>
   </div>
-  {% for flight in flights %}
-  {% endfor %}
   <script>
 $(function() {
     $("#from_airport").autocomplete({

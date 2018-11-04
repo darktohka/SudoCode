@@ -21,7 +21,6 @@ def search(request):
         return HttpResponseRedirect('/')
 
     flights = utils.search_flights(from_airport, to_airport, from_date, to_date)
-    return render(request, 'index.html', {'fail': str(from_airport) + '|' + str(to_airport) + '|' + str(utils.get_month_day(from_date)) + '|' + str(utils.get_month_day(to_date)) + '|' + str(flights)})
     return render(request, 'index.html', {'flights': flights})
 
 def airport_ajax(request):

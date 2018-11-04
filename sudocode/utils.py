@@ -6,7 +6,7 @@ def get_month_day(millisecs):
 
 def search_flights(from_airport, to_airport, from_date, to_date):
     if sys.platform != 'linux':
-        return [{'link': 'https://google.com', 'name': 'Test', 'time': '2 hrs', 'money': '$210'}]
+        return [{'link': 'https://google.com', 'name': 'Test', 'time': '2 hrs', 'money': '$210'}] * 2
 
     from_date = get_month_day(from_date)
     to_date = get_month_day(to_date)
@@ -39,4 +39,3 @@ def search_flights(from_airport, to_airport, from_date, to_date):
         results.append({'link': link, 'name': name, 'time': time, 'money': money})
 
     return results
-
