@@ -5,23 +5,68 @@
     <title>SudoCode Airplanes</title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="{% static 'js/datepicker.min.js' %}"></script>
-  </head>
-  <body>
-    <form id="search" method="post" action="/search">
-      <input type="hidden" id="from" name="from" value="">
-      <input type="hidden" id="to" name="to" value="">
-      <input type="hidden" id="start" name="start" value="">
-      <input type="hidden" id="end" name="end" value="">
-      <p>From: <input type="text" id="from_airport" size="40"/></p>
-      <p>To: <input type="text" id="to_airport" size="40"/></p>
-      <p>Date: <input type="text" id="date" size="40"/></p>
-      <input type="submit"></input>
-    </form>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script>
+    function openNav() {
+        var x = document.getElementById("navigation");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+    </script>
+  </head>
+  <body id="{% if flights %}pic2{% else %}pic3{% endif %}">
+    <div class="topnav" id="navigation">
+      <a href="/" class="active">SudoCode</a>
+      <div class="dropdown dropdown-right">
+        <button class="dropbtn">CodeRed
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="https://uhcode.red">Website</a>
+        </div>
+      </div>
+      <a href="#" style="font-size: 15px;" class="icon" onclick="openNav()">&#9776;</a>
+    </div>
+    <div class="popup-container">
+      <div class="login-form">
+        <div class="main-div">
+          <div class="panel">
+            <h2>Flight Search</h2>
+            <p>Where will your next journey bring you?</p>
+          </div>
+          <form id="search" method="post" action="/search">
+          {% csrf_token %}
+          <input type="hidden" id="from" name="from" value="">
+          <input type="hidden" id="to" name="to" value="">
+          <input type="hidden" id="start" name="start" value="">
+          <input type="hidden" id="end" name="end" value="">
+          <div class="form-group">
+            <p>From: <input type="text" id="from_airport" class="form-control"/></p>
+          </div>
+          <div class="form-group">
+            <p>To: <input type="text" id="to_airport" class="form-control"/></p>
+          </div>
+          <div class="form-group">
+            <p>Date: <input type="text" id="date" class="form-control"/></p>
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>      
+      </div>
+    </div>
+  </div>
+  {% for flight in flights %}
+  {% endfor %}
+  <script>
 $(function() {
     $("#from_airport").autocomplete({
         source: "airportAjax",
@@ -44,5 +89,5 @@ $(function() {
     });
 });
 </script>
-  </body>
+</body>
 </html>

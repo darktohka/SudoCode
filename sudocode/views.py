@@ -8,6 +8,22 @@ import time
 def index(request):
     return render(request, 'index.html', {})
 
+def search(request):
+    if request.method != 'POST' or 'from' not in request.POST or 'to' not in request.POST or 'start' not in request.POST or 'end' not in request.POST:
+        return HttpResponseRedirect('/')
+
+    try:
+        from_airport = Airport.objects.get(code__iexact=request.POST['from']).name
+        to_airport = Airport.objects.get(code__iexact=request.POST['to']).name
+        from_date = int(request.POST['start'])
+        to_date = int(request.POST['end'])
+    except:
+        return HttpResponseRedirect('/')
+
+    flights = utils.search_flights(from_airport, to_airport, from_date, to_date)
+    return render(request, 'index.html', {'fail': str(from_airport) + '|' + str(to_airport) + '|' + str(utils.get_month_day(from_date)) + '|' + str(utils.get_month_day(to_date)) + '|' + str(flights)})
+    return render(request, 'index.html', {'flights': flights})
+
 def airport_ajax(request):
     if 'term' not in request.GET:
         return JsonResponse({})

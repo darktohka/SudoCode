@@ -18,5 +18,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$|^/$', views.index),
+    url(r'search', views.search),
     url(r'airportAjax', views.airport_ajax)
 ]

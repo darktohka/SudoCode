@@ -2,10 +2,10 @@ from bs4 import BeautifulSoup
 import requests, delegator, datetime, os, sys
 
 def get_month_day(millisecs):
-    return datetime.datetime.fromtimestamp(millisecs).strftime('%B %d')
+    return datetime.datetime.fromtimestamp(millisecs + 10000).strftime('%B %d')
 
-def find_flights(from_airport, to_airport, from_date, to_date):
-    if sys.platform != 'linux2':
+def search_flights(from_airport, to_airport, from_date, to_date):
+    if sys.platform != 'linux':
         return [{'link': 'https://google.com', 'name': 'Test', 'time': '2 hrs', 'money': '$210'}]
 
     from_date = get_month_day(from_date)
@@ -17,8 +17,9 @@ def find_flights(from_airport, to_airport, from_date, to_date):
     soup = BeautifulSoup(first.text, features='html.parser')
     link = 'https://www.google.com' + soup.find('div', style='display:block').find('a')['href']
 
-    curl = "/bin/bash %s %s" % (os.path.join(os.getcwd(), "scrape.sh"), link)
-    curl = delegator.run(curl)
+    scrape = os.path.join(os.getcwd(), 'scrape.sh')
+    cur = "/bin/sh %s %s" % (scrape, link)
+    curl = delegator.run(cur)
     curl.block()
 
     soup = BeautifulSoup(curl.out, features='html.parser')
@@ -26,6 +27,7 @@ def find_flights(from_airport, to_airport, from_date, to_date):
 
     if not planes:
         return []
+
     results = []
 
     for plane in planes.div.findAll('div'):
