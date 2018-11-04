@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Airport
+from . import utils
+import time
 
 def index(request):
     return render(request, 'index.html', {})

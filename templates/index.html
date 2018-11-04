@@ -11,7 +11,7 @@
     <script src="{% static 'js/datepicker.min.js' %}"></script>
   </head>
   <body>
-    <div class="auto-widget">
+    <form id="search" method="post" action="/search">
       <input type="hidden" id="from" name="from" value="">
       <input type="hidden" id="to" name="to" value="">
       <input type="hidden" id="start" name="start" value="">
@@ -19,7 +19,8 @@
       <p>From: <input type="text" id="from_airport" size="40"/></p>
       <p>To: <input type="text" id="to_airport" size="40"/></p>
       <p>Date: <input type="text" id="date" size="40"/></p>
-    </div>
+      <input type="submit"></input>
+    </form>
     <script>
 $(function() {
     $("#from_airport").autocomplete({

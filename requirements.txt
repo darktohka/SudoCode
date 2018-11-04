@@ -4,3 +4,4 @@ django-ckeditor
 gevent
 requests
 BeautifulSoup4
+delegator.py
