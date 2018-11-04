@@ -28,3 +28,7 @@ To run the server in shell mode, run:
 In production, we will be using the "game" username. We will be using the nginx server software, and a custom systemd service called "sudocode" will be set up to run our gunicorn workers.
 
 Use the start.sh, stop.sh and restart.sh files to manage the site service.
+
+# Demo
+
+Demo available at https://sudocode.loonatic.pro
